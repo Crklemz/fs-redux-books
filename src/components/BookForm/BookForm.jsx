@@ -1,6 +1,8 @@
 import {useState} from 'react';
+import axios from 'axios';
+import logger from 'redux-logger';
 
-function BookForm() {
+function BookForm({getBooks}) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
@@ -10,6 +12,16 @@ function BookForm() {
     console.log(`Adding book`, {title, author});
 
     // TODO - axios request to server to add book
+    axios.post('/books', {title, author})
+    .then(response => {
+      //clear inputs
+      setTitle('');
+      setAuthor('');
+      //get
+      getBooks();
+    }).catch(error => {
+      console.log(error);
+    })
 
   };
 

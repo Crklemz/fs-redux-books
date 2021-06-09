@@ -10,6 +10,10 @@ import * as serviceWorker from './serviceWorker';
 
 const bookList = (state = [], action) => {
   // TODO - set book list with data from server
+  //no axios in redux
+  if(action.type === 'SET_BOOKS') {
+    return action.payload; //this is response.data in the App.jsx - this is all the rows from an array
+  }
   return state;
 }
 
