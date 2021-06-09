@@ -1,6 +1,10 @@
 import {useState} from 'react';
 import axios from 'axios';
 import logger from 'redux-logger';
+import Button from '@material-ui/core/Button';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import {TextField} from '@material-ui/core';
+
 
 function BookForm({getBooks}) {
   const [title, setTitle] = useState('');
@@ -29,23 +33,28 @@ function BookForm({getBooks}) {
     <section>
       <h2>Add Book</h2>
       <form onSubmit={handleSubmit} className="add-book-form">
-        <input 
+        <TextField
           required 
           placeholder="Title" 
+          variant="outlined"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
 
-        <input 
+        <TextField 
           required 
           placeholder="Author" 
+          variant="outlined"
           value={author}
           onChange={(event) => setAuthor(event.target.value)}
         />
 
-        <button type="submit">
+        <Button endIcon={<CloudUploadIcon />} 
+        variant="outlined" 
+         
+        type="submit">
           Add Book
-        </button>
+        </Button>
       </form>
     </section>
   );
